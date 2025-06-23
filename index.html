@@ -1,23 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Water Quest</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <title>Thirst Quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Water Quest</h1>
-    <p class="game-instructions">Collect 20 items to complete the game!</p>
-    <div class="stats">
-      <p>Cans Collected: <span id="current-cans">0</span></p>
-      <p>Time Left: <span id="timer">30</span>s</p>
-    </div>
-    <div id="achievements" class="achievement"></div>
-    <div class="game-grid"></div>
-    <button id="start-game">Start Game</button>
+<div id="game-container">
+  <div id="background"></div>
+  <div id="player"></div>
+  <div id="hud">Water: <span id="water">100</span>%</div>
+
+  <!-- Start Screen -->
+  <div id="start-screen" class="screen">
+    <img src="https://i.imgur.com/C82ajhl.png" width="60" alt="charity: water logo"/>
+    <h1>Thirst Quest</h1>
+    <p>A game inspired by charity: water</p>
+    <button onclick="startGame()">Start Journey</button>
   </div>
-  <script src="script.js"></script>
+
+  <!-- Win Screen -->
+  <div id="win-screen" class="screen" style="display:none">
+    <h1>You reached clean water! 💧</h1>
+    <p>Millions walk this path every day. Thank you for walking it.</p>
+    <button onclick="resetGame()">Play Again</button>
+  </div>
+
+  <!-- Lose Screen -->
+  <div id="lose-screen" class="screen" style="display:none">
+    <h1>You collapsed from exhaustion 😓</h1>
+    <p>This is reality for many without access to clean water.</p>
+    <button onclick="resetGame()">Try Again</button>
+  </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
