@@ -1,6 +1,13 @@
 let water = 100;
 let gameRunning = false;
 let waterInterval;
+let difficulty = 'easy';
+
+document.querySelectorAll('input[name="difficulty"]').forEach(radio => {
+  radio.addEventListener('change', (e) => {
+    difficulty = e.target.value;
+  });
+});
 
 function startGame() {
   document.getElementById('start-screen').style.display = 'none';
@@ -27,6 +34,9 @@ function startGame() {
 function endGame(win) {
   gameRunning = false;
   clearInterval(waterInterval);
+  if (win) {
+    document.getElementById('win-sound').play();
+  }
   document.getElementById(win ? 'win-screen' : 'lose-screen').style.display = 'flex';
 }
 
@@ -89,9 +99,18 @@ let well = null;     // The well DOM element
 
 function spawnWell() {
   if (!gameRunning) return;
-  const worldWidth = 3000; // Virtual world width in px
-  // Place well randomly somewhere in the world, not too close to the start or end
-  wellWorldX = Math.floor(400 + Math.random() * (worldWidth - 800));
+  // Set world width and well distance based on difficulty
+  let worldWidth, minX, maxX;
+  if (difficulty === 'hard') {
+    worldWidth = 4000;
+    minX = 1200;
+    maxX = worldWidth - 800;
+  } else {
+    worldWidth = 2000;
+    minX = 400;
+    maxX = worldWidth - 800;
+  }
+  wellWorldX = Math.floor(minX + Math.random() * (maxX - minX));
   well = document.createElement('div');
   well.className = 'well';
   well.style.left = (wellWorldX - worldOffset) + 'px';

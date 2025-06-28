@@ -34,21 +34,53 @@ h1, h2, h3 {
   text-align: center;
 }
 
-button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 1.1em;
-  background-color: #f4d35e;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  color: #000;
+/* Charity: water yellow */
+:root {
+  --cw-yellow: #ffd700;
+}
+
+/* HUD with jerry can icon and yellow background */
+#hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+  background: rgba(255, 215, 0, 0.92);
+  color: #222;
+  border-radius: 8px;
+  padding: 8px 18px 8px 12px;
   font-weight: bold;
-  transition: background-color 0.3s;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#hud::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 32px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Jerrycan_icon_charity_water.svg') no-repeat center/contain;
+  margin-right: 8px;
+}
+
+/* Themed button styles */
+button {
+  background-color: var(--cw-yellow);
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-weight: bold;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 button:hover {
-  background-color: #ffd700;
+  background-color: #ffe066;
 }
 
 /* Game Background */
@@ -84,24 +116,11 @@ button:hover {
   bottom: 80px;
   width: 40px;
   height: 48px;
-  background: url('https://openmoji.org/data/color/svg/1F6B0.svg') no-repeat center/contain;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Jerrycan_icon_charity_water.svg') no-repeat center/contain;
   z-index: 2;
 }
 .well.collected {
   display: none;
-}
-
-#hud {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 5;
-  background: rgba(255, 255, 255, 0.85);
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-weight: bold;
-  color: #222;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
 @keyframes jump {
@@ -114,4 +133,19 @@ button:hover {
 
 #player.jumping {
   animation: jump 0.5s cubic-bezier(.28,.84,.42,1) forwards;
+}
+
+/* Optional: Win screen footer link styling */
+#win-screen footer a {
+  color: #ffd700;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.1em;
+}
+
+#win-screen footer a:hover {
+  color: #222;
+  background: #ffd700;
+  border-radius: 4px;
+  padding: 2px 6px;
 }
